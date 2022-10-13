@@ -52,11 +52,11 @@ export class Game {
     isFinalState() {
         for (let i = 0; i < this.nRows; i++) {
             // caso alguma coluna não tenha nenhum elemento sobrando
-            if (this.board[i] == 0) {
-                return true;
+            if (this.board[i] > 0) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 
@@ -153,7 +153,7 @@ export class Game {
     }
 
 
-    doBestPlay() {
+    doBestMove() {
         if (this.isBalanced()) {
             // play random move
             this.doRandomMove(1)
@@ -179,9 +179,9 @@ export class Game {
     }
 
 
-    doAIPLay() {
+    doAIMove() {
         if (Math.floor(Math.random() * 10) > this.difficulty) {
-            this.doBestPlay();
+            this.doBestMove();
         } else {
             this.doRandomMove(-1);
         }
