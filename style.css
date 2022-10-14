@@ -1,0 +1,104 @@
+
+/* Fonte Lato */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+/* Fonte Poppins e Teko para logotipo */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;800&family=Teko:wght@300;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    scroll-behavior: smooth;
+}
+
+html {
+
+}
+
+body {
+
+}
+
+.fundo-cinza {
+    background-color: #FAF7F7;
+}
+
+.fundo-branco {
+    background-color: white;
+}
+
+.sombra {
+    box-shadow: 0 0 10px #E6E5E5;
+}
+
+
+.logotipo {
+    width: 70px;
+    height: 70px;
+    background: #292828;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-family: 'Teko', sans-serif;
+    font-size: 3rem;
+    letter-spacing: -0.1rem;
+    
+  }
+    
+
+.contentor-jogo {
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    padding: 1rem;
+    margin: auto;
+    height: 100px;
+    overflow: hidden;
+}
+
+header ul {
+    display: flex;
+    list-style-type: none;
+    gap: 50px;
+}
+
+.botao {
+    border: 0.5px solic black;
+    border-radius: 50%;
+}
+
+.jogo {
+    display: flex;
+    gap: 10px;
+}
+
+.contentor-tabuleiro {
+    width: 900px;
+    height: 800px;
+    border-radius: 40px;;
+}
+
+.contentor-mensagem {
+    width: 600px;
+    height: 200px;
+}
+
+.contentor-config {
+    width: 600px;
+    height: 600px;
+}
+
+.contentor-classificacao {
+    border: 1px solid #292828;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.instrucoes {
+    height: 100vh;
+}
