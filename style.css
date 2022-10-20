@@ -36,6 +36,15 @@ body {
     padding: 20px;
 }
 
+header a {
+    text-decoration: none;
+    color: #292828;
+}
+
+header a:hover {
+    text-decoration: none;
+    background-color: turquoise;
+}
 
 .logotipo{
     width: 70px;
@@ -48,6 +57,7 @@ body {
     justify-content: center;
     top: 50px;
     font-family: 'Teko', sans-serif;
+    text-transform: uppercase;
     font-size: 3rem;
     letter-spacing: -0.1rem;  
     font-weight: 400;
@@ -95,6 +105,14 @@ header ul {
     background-color: white;
     font-weight: bold;
     margin: 10px;
+    text-decoration: none;
+    color: #292828;
+    width:fit-content;
+    text-align: center;
+}
+
+.botao:hover {
+    background-color: turquoise;
 }
 
 .botao-inativo {
@@ -105,6 +123,8 @@ header ul {
     color: #bebebe;
     font-weight: bold;
     margin: 10px;
+    width:fit-content;
+    text-align: center;
 }
 
 .jogo {
@@ -197,7 +217,34 @@ input {
     width: 100px;
 }
 
-.instrucoes {
+.informacoes {
     height: 100vh;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h1 {
+    font-family: 'Teko', sans-serif;
+    text-transform:uppercase;
+    font-size: 3rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 20px;
+    padding-top: 40px;
+}
+
+.informacoes div {
+    width: 800px;
+    margin: 50px;
+    border-radius: 40px;
+    padding: 40px;
+
+}
+
+.informacoes div > * {
+    padding: 20px;
+
 }

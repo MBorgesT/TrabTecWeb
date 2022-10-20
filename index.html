@@ -8,14 +8,14 @@
     <title>Jogo do Nim</title>
 </head>
 <body>
-    <div class="contentor-jogo fundo-cinza">
+    <div class="contentor-jogo fundo-cinza" id="topo">
         <header>
             <div class="logotipo">
                 NIM</div>
            <nav>
             <ul>
-                <li>Instruções</li>
-                <li>Sobre o projeto</li>
+                <li><a href="#inst">Instruções</a></li>
+                <li><a href="#sobre">Sobre o projeto</a></li>
             </ul>
            </nav>
            <span class="botao">Desistir do jogo</span>
@@ -117,11 +117,26 @@
     </section>
     </div>
 
-    <section class="instrucoes">
-        <h1>Instruções</h1>
+    <section class="informacoes">
+        <a id="inst"></a><h1>Instruções</h1>
+            <div class="fundo-cinza sombra">
+                <p>O jogo é jogado em duplas. Joga-se com pilhas de bolas. Cada jogador, quando lhe toca jogar, pode retirar bolas de uma só pilha, mas quantas quiser, de um mínimo de um a um máximo de toda a pilha. Ganha o jogador que retirar a última bola.
+                </p>
+            </div>
 
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet elit vel libero sagittis rutrum. Nulla iaculis, nibh eu pretium elementum, nisl nunc placerat ligula, non scelerisque mauris orci eget mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque mauris tellus, porttitor vitae venenatis in, ultricies ornare magna. Maecenas feugiat tincidunt nisl id cursus. Praesent porttitor laoreet malesuada. Duis orci ex, aliquam at dolor eget, malesuada maximus velit. Duis lobortis eros vitae velit dignissim dapibus. Donec volutpat sapien in scelerisque accumsan.
-        </div>
+        <a href="#topo" class="botao">Voltar para o jogo</a>
+    </section>
+
+    <section class="informacoes">
+        <a id="sobre"></a><h1>Sobre o projeto</h1>
+            <div class="fundo-cinza sombra">
+                <p>Trabalho realizado para a disciplina Tecnologias Web. 
+                </p>
+                <p>COMPLETAR!!!!!!
+                </p>
+            </div>
+
+        <a href="#topo" class="botao">Voltar para o jogo</a>
     </section>
 
 </body>
