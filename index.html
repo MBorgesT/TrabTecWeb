@@ -9,28 +9,104 @@
 </head>
 <body>
     <div class="contentor-jogo fundo-cinza">
-    <header>
-        <div class="logotipo">NIM
-        </div>
-        <nav>
+        <header>
+            <div class="logotipo">
+                NIM</div>
+           <nav>
             <ul>
                 <li>Instruções</li>
                 <li>Sobre o projeto</li>
-                <li><span class="botao">Login</span></li>
-                <li><span class="botao">Desistir do jogo</span></li>
             </ul>
-        </nav>
-    </header>
+           </nav>
+           <span class="botao">Desistir do jogo</span>
+
+           <span class="botao-inativo">Login</span>
+        </header>
     
     <section class="jogo">
-        <div class="contentor-tabuleiro fundo-branco sombra">
+        <div class="contentor-tabuleiro fundo-cinza sombra">
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna_jogo">
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            
+        </div>
+        <div>
+            <div class="contentor-mensagem fundo-branco sombra">
+                <div class="mensagem-texto">Jogada Impossível!</div>
+            </div>
+            <div class="contentor-config fundo-cinza sombra">
+                
+                <form action="">
+                    <h2>Configurações</h2>
 
-        </div>
-        <div class="contentor-mensagem fundo-branco sombra">
-            <div class="mensagem-texto">Jogada Impossível!</div>
-        </div>
-        <div class="contentor-config fundo-cinza sombra">
-            <h2>Configurações</h2>
+                <p><label for="tamanhoTabuleiro">Tamanho do tabuleiro</label><br>
+                    <input type="number" id="linhas" name="linhas" min="1" max="6" value="5" size="1"> Linhas<br>
+                    <input type="number" id="colunas" name="colunas" min="1" max="6" value="5" size="1"> Colunas
+                </p>
+
+                <p><label for="versus">Versus</label><br>
+                <input type="radio" id="computador" name="fav_language" value="computador" checked>
+                <label for="computador">Computador</label><br>
+                <input type="radio" id="usuario" name="fav_language" value="usuario" disabled>
+                <label for="usuario">Outra pessoa</label>
+                </p>
+
+                <p><label for="nivelIA">Nível de Inteligência Artificial</label><br>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="myRange"></p>
+
+                <p>
+                    <input type="checkbox" id="quemjogaprimeiro" name="quemjogaprimeiro" value="SimJogaPrimeiro">
+                    <label for="quemjogaprimeiro"> Quero jogar primeiro</label>
+                </p>
+
+                <p><input type="submit"  class="botao" value="Novo Jogo"></p>
+            </form>
+            </div>
         </div>
         <div class="contentor-classificacao">
             <div>O O</div>

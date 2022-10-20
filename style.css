@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 /* Fonte Poppins e Teko para logotipo */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;800&family=Teko:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;800&family=Teko:wght@300;500&display=swap');
 
 * {
     margin: 0;
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-
+    font-weight: 100;
 }
 
 .fundo-cinza {
@@ -31,66 +31,164 @@ body {
 }
 
 .sombra {
-    box-shadow: 0 0 10px #E6E5E5;
+    box-shadow:  20px 20px 50px #bebebe,
+             -20px -20px 50px #ffffff;
+    padding: 20px;
 }
 
 
-.logotipo {
+.logotipo{
     width: 70px;
     height: 70px;
     background: #292828;
     border-radius: 50%;
-    color: white;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50px;
     font-family: 'Teko', sans-serif;
     font-size: 3rem;
-    letter-spacing: -0.1rem;
-    
+    letter-spacing: -0.1rem;  
+    font-weight: 400;
+    color: white;
+    padding-top: 5px;
   }
     
 
 .contentor-jogo {
+    width: 100vw;
+    min-width: 1650px;
     height: 100vh;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 header {
+    width: 100%;
     display: flex;
     padding: 1rem;
-    margin: auto;
     height: 100px;
-    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+head nav {
+    display: block;
 }
 
 header ul {
+    padding-left: 20px;
     display: flex;
     list-style-type: none;
-    gap: 50px;
+    gap: 30px;
 }
 
+
 .botao {
-    border: 0.5px solic black;
-    border-radius: 50%;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 8px 20px;
+    background-color: white;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.botao-inativo {
+    border: 1px solid #bebebe;
+    border-radius: 20px;
+    background-color: #FAF7F7;
+    padding: 8px 20px;
+    color: #bebebe;
+    font-weight: bold;
+    margin: 10px;
 }
 
 .jogo {
     display: flex;
+    padding: 10px;
+    min-width: 100%;
     gap: 10px;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .contentor-tabuleiro {
-    width: 900px;
+    min-width: 800px;
     height: 800px;
-    border-radius: 40px;;
+    border-radius: 40px;
+
+    display: inline-flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+}
+
+.coluna-jogo {
+    width: 110%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bola {
+    border: 1px solid #BAB8B8;
+    border-radius: 50%;
+    background: rgba(195,195,195,1);
+    background-image: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(191,190,190,1) 70%, rgba(191,190,190,1) 100%); 
+    /*
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(191,190,190,1) 65%, rgba(191,190,190,1) 100%); 
+    */
+    background-position: top -5px left 0px;
+    background-size: 120%;
+    background-repeat:no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+
+}
+
+.bola:hover {
+    box-shadow:  0px 0px 0 8px white, 0px 0px 0 12px turquoise;
 }
 
 .contentor-mensagem {
-    width: 600px;
-    height: 200px;
+    padding: 30px;
+    min-width: 600px;
+    min-height: 190px;
+    border-radius: 35px;
+    text-align: center;
+    justify-content: center;
 }
 
 .contentor-config {
+    padding: 30px;
+    position: relative;
     width: 600px;
     height: 600px;
+    border-radius: 35px;
+    top: 10px;
+    display: grid;
+    gap: 10px;
+    justify-content: stretch;
+}
+.contentor-config h2 {
+    font-weight: 400;
+}
+
+.contentor-config form {
+    display: grid;
+    gap: 10px;
+    justify-content: stretch;
+}
+
+input {
+    margin: 2px;
+    vertical-align: middle;
 }
 
 .contentor-classificacao {
@@ -101,4 +199,5 @@ header ul {
 
 .instrucoes {
     height: 100vh;
+    padding: 20px;
 }
