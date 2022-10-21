@@ -30,6 +30,7 @@ class MainPage {
 
     fillGameBoard() {
         this.clearGameBoard();
+        
         const contentorJogo = document.getElementById("contentorJogo");
         for (let j = 0; j < this.nColunas; j++) {
             let colElem = document.createElement("div");

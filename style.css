@@ -63,6 +63,7 @@ header a:hover {
     font-weight: 400;
     color: white;
     padding-top: 5px;
+    z-index: 1000;
   }
     
 
@@ -143,16 +144,20 @@ header ul {
 
     display: inline-flex;
     flex-direction:row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
 .coluna-jogo {
-    width: 110%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-right:1px solid rgba(195,195,195,1);
+    
+}
+
+.coluna-jogo:last-child {
+    border: none;
+    
 }
 
 .bola {
@@ -168,7 +173,7 @@ header ul {
     background-repeat:no-repeat;
     width: 100px;
     height: 100px;
-    margin: 20px;
+    margin: 10px;
 
 }
 
@@ -181,8 +186,14 @@ header ul {
     min-width: 600px;
     min-height: 190px;
     border-radius: 35px;
+    display: flex;
     text-align: center;
+    align-items: center;
     justify-content: center;
+}
+
+.contentor-mensagem > * {
+    font-size: 1.2rem;
 }
 
 .contentor-config {
@@ -196,6 +207,11 @@ header ul {
     gap: 10px;
     justify-content: stretch;
 }
+
+.contentor-config > * {
+    line-height: 2.2rem;
+}
+
 .contentor-config h2 {
     font-weight: 400;
 }
@@ -246,5 +262,6 @@ h1 {
 
 .informacoes div > * {
     padding: 20px;
+    line-height: 2rem;
 
 }
