@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Jogo do Nim</title>
-    <script></script>
+    <script type="module" src="app.js"></script>
 </head>
 <body>
     <div class="contentor-jogo fundo-cinza" id="topo">
@@ -16,11 +16,10 @@
            <nav>
             <ul>
                 <li><a href="#inst">Instruções</a></li>
+                <li><a href="#rank">Classificações</a></li>
                 <li><a href="#sobre">Sobre o projeto</a></li>
             </ul>
            </nav>
-           <span class="botao">Desistir do jogo</span>
-
            <span class="botao-inativo">Login</span>
         </header>
     
@@ -32,17 +31,8 @@
                 <div class="bola"></div>
                 <div class="bola"></div>
                 <div class="bola"></div>
-                <div class="bola"></div>
             </div>
             <div class="coluna-jogo">
-                <div class="bola"></div>
-                <div class="bola"></div>
-                <div class="bola"></div>
-                <div class="bola"></div>
-            </div>
-            <div class="coluna-jogo">
-                <div class="bola"></div>
-                <div class="bola"></div>
                 <div class="bola"></div>
                 <div class="bola"></div>
                 <div class="bola"></div>
@@ -61,10 +51,15 @@
                 <div class="bola"></div>
                 <div class="bola"></div>
                 <div class="bola"></div>
-                <div class="bola"></div>
             </div>
             <div class="coluna-jogo">
                 <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+                <div class="bola"></div>
+            </div>
+            <div class="coluna-jogo">
                 <div class="bola"></div>
                 <div class="bola"></div>
                 <div class="bola"></div>
@@ -76,6 +71,7 @@
         <div>
             <div class="contentor-mensagem fundo-branco sombra">
                 <p class="mensagem-texto">Jogada Impossível!</p>
+                <span class="botao">Desistir do jogo</span>
             </div>
             <div class="contentor-config fundo-cinza sombra">
                 
