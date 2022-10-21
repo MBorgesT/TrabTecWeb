@@ -210,6 +210,18 @@ export class Game {
     }
 
 
+    // PROTOTYPE
+
+
+    getAIMove() {
+        if (Math.floor(Math.random() * 10) < this.difficulty) {
+            this.doBestMove();
+        } else {
+            this.doRandomMove();
+        }
+    }
+
+
 }
 
 

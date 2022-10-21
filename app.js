@@ -5,18 +5,13 @@ class MainPage {
 
 
     constructor() {
-        const urlParams = new URLSearchParams(window.location.search);
-
-        if (urlParams.has('linhas')) { this.nLinhas = urlParams.get('linhas'); }
-        else { this.nLinhas = 5; }
-
-        if (urlParams.has('colunas')) { this.nColunas = urlParams.get('colunas'); }
-        else { this.nColunas = 5; }
-
+        this.nLinhas = 5;
+        this.nColunas = 5;
+        this.oponenteIA = true;
         this.dificuldade = 5;
+        this.turno = true; // true - primeiro turno; false - segundo
 
         this.startPage();
-
     }
 
 
@@ -24,6 +19,12 @@ class MainPage {
         document.getElementById("linhas").value = this.nLinhas;
         document.getElementById("colunas").value = this.nColunas;
         document.getElementById("nivelIA").value = this.dificuldade;
+        document.getElementById("quemjogaprimeiro").checked = this.turno;
+        if (this.oponenteIA) {
+            document.getElementById("computador").checked = true;
+        } else {
+            document.getElementById("usuario").checked = true;
+        }
     }
 
 
@@ -35,17 +36,17 @@ class MainPage {
     checkGameStatus() {
         if (this.game.isFinalState()) {
             let vencedor;
-            if (this.nextPlayer == "Jogador") {
+            if (this.turno) {
                 vencedor = "IA";
             } else {
                 vencedor = "Jogador";
             }
             this.setMensagem(`${vencedor} venceu!`);
             this.disablePlay();
-        } else if (this.nextPlayer == "Jogador") {
-            this.setMensagem("Vez do jogador");
+        } else if (this.turno) {
+            this.setMensagem("Turno do jogador");
         } else {
-            this.setMensagem("Vez da IA");
+            this.setMensagem("Turno da IA");
         }
     }
 
@@ -72,22 +73,27 @@ class MainPage {
     }
 
 
-    async play(coluna, valor) {
-        this.game.play(coluna, valor);
-        this.nextPlayer = "IA"
+    async playIA() {
+        this.disablePlay();
+
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        this.game.doAIMove();
+        this.turno = !this.turno;
+
         this.fillGameBoard();
 
-        if (this.opponent == "IA" && !this.game.isFinalState()) {
-            this.disablePlay();
+        this.enablePlay();
+    }
 
-            await new Promise(resolve => setTimeout(resolve, 500));
 
-            this.game.doAIMove();
-            this.nextPlayer = "Jogador";
+    play(coluna, valor) {
+        this.game.play(coluna, valor);
+        this.turno = !this.turno;
+        this.fillGameBoard();
 
-            this.fillGameBoard();
-
-            this.enablePlay();
+        if (this.oponenteIA && !this.game.isFinalState()) {
+            this.playIA();
         }
     }
 
@@ -150,27 +156,26 @@ class MainPage {
     }
 
     startGame() {
-        this.opponent = "IA";
-
         this.nLinhas = parseInt(document.getElementById("linhas").value);
         this.nColunas = parseInt(document.getElementById("colunas").value);
+        this.oponenteIA = document.getElementById("computador").checked;
         this.dificuldade = parseInt(document.getElementById("nivelIA").value);
-        if (document.getElementById("quemjogaprimeiro").checked) {
-            this.nextPlayer = "Jogador";
-        } else {
-            this.nextPlayer = "IA";
-        }
+        this.turno = document.getElementById("quemjogaprimeiro").checked;
 
         this.game = new Game(this.nLinhas, this.nColunas, this.dificuldade);
 
         this.fillGameBoard();
+
+        if (!this.turno) {
+            this.playIA();
+        }
     }
 
 }
 
 
 function main() {
-    const mainPage = new MainPage();
+    new MainPage();
 }
 
 window.onload = () => main();
