@@ -14,7 +14,7 @@ class MainPage {
         this.dificuldade = 5;
         // true - primeiro turno; false - segundo
         // alterna entre um e outro, de acordo com as jogadas
-        this.turno = true; 
+        this.turno = true;
 
         this.startPage();
     }
@@ -206,6 +206,16 @@ class MainPage {
     */
 
 
+    desistir() {
+        /*
+        termina o jogo, concedendo a vitória ao oponente da vez
+        */
+        this.turno = !this.turno;
+        this.clearGameBoard();
+        this.finalizarJogo();
+    }
+
+
     finalizarJogo() {
         /*
         modifica a tela para uma situação de fim de jogo
@@ -248,11 +258,19 @@ class MainPage {
         await new Promise(resolve => setTimeout(resolve, 200));
 
         const move = this.game.getAIMove();
-        this.bolaAddHighlight(move[0], move[1] - 1, 1);
+
+        try {
+            this.bolaAddHighlight(move[0], move[1] - 1, 1);
+        } catch (err) {
+            console.log(`move: ${move}`);
+            throw err;
+        }
 
         await new Promise(resolve => setTimeout(resolve, 800));
 
         this.game.play(move[0], move[1]);
+        this.turno = !this.turno;
+
         this.updateGameBoard();
 
         this.enablePlay();
@@ -272,16 +290,6 @@ class MainPage {
         if (this.oponenteIA && !this.game.isFinalState()) {
             this.playIA();
         }
-    }
-
-
-    desistir() {
-        /*
-        termina o jogo, concedendo a vitória ao oponente da vez
-        */
-        this.turno = !this.turno;
-        this.clearGameBoard();
-        this.finalizarJogo();
     }
 
 

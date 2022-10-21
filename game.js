@@ -121,7 +121,7 @@ export class Game {
         return true;
     }
 
-    
+
     canEndInNextMove() {
         let count = 0;
         for (let i = 0; i < this.nRows; i++) {
@@ -146,71 +146,6 @@ export class Game {
 
         return -1;
     }
-
-
-    doRandomMove(amountToRemove) {
-        let possibleMoves = [];
-        for (let i = 0; i < this.nRows; i++) {
-            if (this.board[i] > 0) {
-                possibleMoves.push(i);
-            }
-        }
-
-        let row = Math.floor(Math.random() * possibleMoves.length);
-
-        // quantidade aleatória
-        if (amountToRemove == null) {
-            amountToRemove = Math.floor(Math.random() * (this.board[row])) + 1;
-        }
-
-        this.play(possibleMoves[row], amountToRemove);
-    }
-
-
-    doBestMove() {
-        if (this.canEndInNextMove()) {
-            for (let i = 0; i < this.nRows; i++) {
-                if (this.board[i] > 0) {
-                    this.play(i, this.board[i]);
-                    break;
-                }
-            }
-        }
-        else if (this.isBalanced()) {
-            // play random move
-            this.doRandomMove(1);
-        } else {
-            // try to find a move that balances
-            let unbalancedRow = this.getFirstUnbalancedRow();
-            if (unbalancedRow == -1) {
-                throw 'Isto não deveria acontecer';
-            }
-
-            let matDecomp = this.binaryDecomposition();
-            let amountToRemove = 0;
-            // a inicialização em 1 e o j += 2 são para não somar os valores
-            // das colunas de índices pares
-            for (let j = 1; j < matDecomp[unbalancedRow].length; j += 2) {
-                if (matDecomp[unbalancedRow][j] == 1) {
-                    amountToRemove += Math.pow(2, j);
-                }
-            }
-
-            this.play(unbalancedRow, amountToRemove);
-        }
-    }
-
-
-    doAIMove() {
-        if (Math.floor(Math.random() * 10) < this.difficulty) {
-            this.doBestMove();
-        } else {
-            this.doRandomMove();
-        }
-    }
-
-
-    // PROTOTYPE
 
 
     getRandomMove(amountToRemove) {
@@ -240,27 +175,47 @@ export class Game {
                 }
             }
         }
-        else if (this.isBalanced()) {
-            // play random move
-            return this.getRandomMove(1);
-        } else {
-            // try to find a move that balances
-            let unbalancedRow = this.getFirstUnbalancedRow();
-            if (unbalancedRow == -1) {
-                throw 'Isto não deveria acontecer';
+        else {
+            let matDecomp = this.binaryDecomposition();
+            let rowToPlay;
+
+            if (this.isBalanced()) {
+                // random row
+                let possibleMoves = [];
+                for (let i = 0; i < this.nRows; i++) {
+                    if (this.board[i] > 0) {
+                        possibleMoves.push(i);
+                    }
+                }
+
+                let randIndex = Math.floor(Math.random() * possibleMoves.length);
+                rowToPlay = possibleMoves[randIndex];
+
+            } else {
+                // find a row that needs to be balanced
+                rowToPlay = this.getFirstUnbalancedRow();
+                if (rowToPlay == -1) {
+                    throw 'Isto não deveria acontecer';
+                }
+
             }
 
-            let matDecomp = this.binaryDecomposition();
             let amountToRemove = 0;
             // a inicialização em 1 e o j += 2 são para não somar os valores
             // das colunas de índices pares
-            for (let j = 1; j < matDecomp[unbalancedRow].length; j += 2) {
-                if (matDecomp[unbalancedRow][j] == 1) {
+            for (let j = 1; j < matDecomp[rowToPlay].length; j += 2) {
+                if (matDecomp[rowToPlay][j] == 1) {
                     amountToRemove += Math.pow(2, j);
                 }
             }
 
-            return [unbalancedRow, amountToRemove];
+            // não se pode realizar jogada que não se retira nenhuma bola
+            if (amountToRemove == 0) {
+                amountToRemove = 1;
+            }
+
+            return [rowToPlay, amountToRemove];
+
         }
     }
 
