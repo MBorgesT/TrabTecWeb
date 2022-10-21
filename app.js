@@ -1,53 +1,72 @@
-import { Game } from './game.js';
+import { Game } from "./game.js";
 
 
-let game = new Game(7, 3);
-game.board = [6, 5, 4];
+class MainPage {
 
 
-console.log(game.board)
-game.printBoard();
+    constructor() {
+        this.nLinhas = 5;
+        this.nColunas = 5;
+        this.dificuldade = 1;
 
-let matDecomp = game.binaryDecomposition();
-for (let i = 0; i < matDecomp.length; i++) {
-    console.log(matDecomp[i].reverse());
-function fillBoard() {
-    let nRows = 10;
-    let nCols = 5;
+        this.game = new Game(this.nLinhas, this.nColunas, this.dificuldade);
 
-    let board = [3, 10, 6, 2, 8];
-    let boardElem = document.getElementById('board');
-
-    for (let i = 0; i < nCols; i++) {
-        let colElem = document.createElement('span');
-        for (let j = 0; j < board[i]; j++) {
-            let circleWrap = document.createElement('div');
-            circleWrap.className = 'circleWrap';
-            circleWrap.style.width = `50px`;
-            circleWrap.style.height = `50px`;
-
-            let circle = document.createElement('div');
-            circle.className = 'circle';
-            circle.style.width = '100%';
-            circle.style.height = '100%';
-            circleWrap.appendChild(circle);
-
-            colElem.appendChild(circleWrap);
-        }
-        boardElem.appendChild(colElem);
+        this.startPage();
     }
+
+
+    fillConfigFields() {
+        document.getElementById("linhas").value = this.nLinhas;
+        document.getElementById("colunas").value = this.nColunas;
+        document.getElementById("nivelIA").value = this.dificuldade;
+    }
+
+
+    play(coluna, valor) {
+        this.game.play(coluna, valor);
+        this.fillGameBoard();
+    }
+
+
+    fillGameBoard() {
+        this.clearGameBoard();
+        
+        const contentorJogo = document.getElementById("contentorJogo");
+        for (let j = 0; j < this.nColunas; j++) {
+            let colElem = document.createElement("div");
+            colElem.className = "coluna_jogo";
+
+            for (let i = 0; i < this.game.board[j]; i++) {
+                let bolaElem = document.createElement("div");
+                bolaElem.className = "bola";
+                bolaElem.setAttribute("value", i+1);
+                bolaElem.setAttribute("coluna", j);
+                bolaElem.onclick = () => this.play(j, i+1);
+
+                colElem.appendChild(bolaElem);
+            }
+
+            contentorJogo.appendChild(colElem);
+        }
+    }
+
+
+    clearGameBoard() {
+        const contentorJogo = document.getElementById("contentorJogo");
+        contentorJogo.innerHTML = "";
+    }
+
+
+    startPage() {
+        this.fillConfigFields();
+        this.fillGameBoard();
+    }
+     
 }
 
-console.log('\n\n');
 
-
-game.doBestPlay();
-
-console.log(game.board)
-game.printBoard();
-
-matDecomp = game.binaryDecomposition();
-for (let i = 0; i < matDecomp.length; i++) {
-    console.log(matDecomp[i].reverse());
+function main() {
+    const mainPage = new MainPage();
 }
-window.onload = () => fillBoard();
+
+window.onload = () => main();
