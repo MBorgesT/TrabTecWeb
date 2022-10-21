@@ -33,17 +33,7 @@ body {
     padding: 20px;
 }
 
-header a {
-    text-decoration: none;
-    color: #292828;
-}
-
-header a:hover {
-    text-decoration: none;
-    background-color: turquoise;
-}
-
-.logotipo {
+.logotipo{
     width: 70px;
     height: 70px;
     background: #292828;
@@ -84,7 +74,18 @@ header {
     align-self: flex-start;
 }
 
-head nav {
+header a {
+    text-decoration: none;
+    color: #292828;
+    padding: 2px 8px;
+}
+
+header a:hover {
+    text-decoration: none;
+    background-color: turquoise;
+}
+
+header nav {
     display: block;
 }
 
@@ -146,14 +147,13 @@ header ul {
 }
 
 .coluna-jogo {
-    width: 100%;
-    height: 100%;
-    border-right: 1px solid rgba(195, 195, 195, 1);
-    
+    width:100%;
+    height:100%;
+    border-right:1px solid rgba(195,195,195,1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end;    
 }
 
 .coluna-jogo:last-child {
@@ -177,8 +177,12 @@ header ul {
 
 }
 
-.bola:hover {
-    box-shadow: 0px 0px 0 8px white, 0px 0px 0 12px turquoise;
+.bola:hover, .bola:focus {
+    box-shadow:  0px 0px 0 8px white, 0px 0px 0 12px turquoise;
+}
+
+.bola-hover {
+    box-shadow:  0px 0px 0 8px white, 0px 0px 0 12px turquoise;
 }
 
 .contentor-mensagem {
@@ -187,13 +191,20 @@ header ul {
     min-height: 190px;
     border-radius: 35px;
     display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     text-align: center;
     align-items: center;
     justify-content: center;
+    margin: auto;
 }
 
-.contentor-mensagem>* {
+.mensagem-texto  {
     font-size: 1.2rem;
+}
+
+.contentor-mensagem:last-child{
+    margin-bottom: 0px;
 }
 
 .contentor-config {

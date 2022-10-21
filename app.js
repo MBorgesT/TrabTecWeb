@@ -5,16 +5,18 @@ class MainPage {
 
 
     constructor() {
-        this.nLinhas = 5;
-        this.nColunas = 5;
-        this.dificuldade = 10;
+        const urlParams = new URLSearchParams(window.location.search);
 
-        this.opponent = "AI";
-        this.lastPlayed = "AI";
+        if (urlParams.has('linhas')) { this.nLinhas = urlParams.get('linhas'); }
+        else { this.nLinhas = 5; }
 
-        this.game = new Game(this.nLinhas, this.nColunas, this.dificuldade);
+        if (urlParams.has('colunas')) { this.nColunas = urlParams.get('colunas'); }
+        else { this.nColunas = 5; }
+
+        this.dificuldade = 5;
 
         this.startPage();
+
     }
 
 
@@ -32,8 +34,15 @@ class MainPage {
 
     checkGameStatus() {
         if (this.game.isFinalState()) {
-            this.setMensagem(`${this.lastPlayed} venceu!`)
-        } else if (this.lastPlayed == "AI") {
+            let vencedor;
+            if (this.nextPlayer == "Jogador") {
+                vencedor = "IA";
+            } else {
+                vencedor = "Jogador";
+            }
+            this.setMensagem(`${vencedor} venceu!`);
+            this.disablePlay();
+        } else if (this.nextPlayer == "Jogador") {
             this.setMensagem("Vez do jogador");
         } else {
             this.setMensagem("Vez da IA");
@@ -65,20 +74,36 @@ class MainPage {
 
     async play(coluna, valor) {
         this.game.play(coluna, valor);
-        this.lastPlayed = "Player";
+        this.nextPlayer = "IA"
         this.fillGameBoard();
 
-        if (this.opponent == "AI") {
+        if (this.opponent == "IA" && !this.game.isFinalState()) {
             this.disablePlay();
 
-            await new Promise(resolve => setTimeout(resolve, 250));
+            await new Promise(resolve => setTimeout(resolve, 500));
 
             this.game.doAIMove();
-            this.lastPlayed = "AI";
+            this.nextPlayer = "Jogador";
 
             this.fillGameBoard();
 
             this.enablePlay();
+        }
+    }
+
+
+    bolaMouseOver(col, bola) {
+        const colElem = document.getElementById(`col${col}`);
+        for (let i = bola; i >= 0; i--) {
+            colElem.childNodes[i].classList.add("bola-hover");
+        }
+    }
+
+
+    bolaMouseOut(col, bola) {
+        const colElem = document.getElementById(`col${col}`);
+        for (let i = bola; i >= 0; i--) {
+            colElem.childNodes[i].classList.remove("bola-hover");
         }
     }
 
@@ -91,13 +116,16 @@ class MainPage {
         for (let j = 0; j < this.nColunas; j++) {
             let colElem = document.createElement("div");
             colElem.className = "coluna-jogo";
+            colElem.setAttribute("id", `col${j}`)
 
             for (let i = 0; i < this.game.board[j]; i++) {
                 let bolaElem = document.createElement("div");
                 bolaElem.className = "bola";
-                bolaElem.setAttribute("value", i+1);
+                bolaElem.setAttribute("value", i + 1);
                 bolaElem.setAttribute("coluna", j);
-                bolaElem.onclick = () => this.play(j, i+1);
+                bolaElem.onclick = () => this.play(j, i + 1);
+                bolaElem.onmouseover = () => this.bolaMouseOver(j, i);
+                bolaElem.onmouseout = () => this.bolaMouseOut(j, i);
 
                 colElem.appendChild(bolaElem);
             }
@@ -115,9 +143,29 @@ class MainPage {
 
     startPage() {
         this.fillConfigFields();
+
+        document.getElementById("botaoNovoJogo").onclick = () => this.startGame();
+
+        this.startGame();
+    }
+
+    startGame() {
+        this.opponent = "IA";
+
+        this.nLinhas = parseInt(document.getElementById("linhas").value);
+        this.nColunas = parseInt(document.getElementById("colunas").value);
+        this.dificuldade = parseInt(document.getElementById("nivelIA").value);
+        if (document.getElementById("quemjogaprimeiro").checked) {
+            this.nextPlayer = "Jogador";
+        } else {
+            this.nextPlayer = "IA";
+        }
+
+        this.game = new Game(this.nLinhas, this.nColunas, this.dificuldade);
+
         this.fillGameBoard();
     }
-     
+
 }
 
 

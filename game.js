@@ -160,7 +160,7 @@ export class Game {
 
         // quantidade aleatória
         if (amountToRemove == null) {
-            amountToRemove = Math.floor(Math.random() * (this.board[row] - 1)) + 1;
+            amountToRemove = Math.floor(Math.random() * (this.board[row])) + 1;
         }
 
         this.play(possibleMoves[row], amountToRemove);
