@@ -5,13 +5,21 @@ class MainPage {
 
 
     constructor() {
-        this.nLinhas = 5;
-        this.nColunas = 5;
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.has('linhas')) { this.nLinhas = urlParams.get('linhas'); }
+        else { this.nLinhas = 5; }
+
+        if (urlParams.has('colunas')) { this.nColunas = urlParams.get('colunas'); }
+        else { this.nColunas = 5; }
+
+
         this.dificuldade = 1;
 
         this.game = new Game(this.nLinhas, this.nColunas, this.dificuldade);
 
         this.startPage();
+
     }
 
 
@@ -34,7 +42,7 @@ class MainPage {
         const contentorJogo = document.getElementById("contentorJogo");
         for (let j = 0; j < this.nColunas; j++) {
             let colElem = document.createElement("div");
-            colElem.className = "coluna_jogo";
+            colElem.className = "coluna-jogo";
 
             for (let i = 0; i < this.game.board[j]; i++) {
                 let bolaElem = document.createElement("div");
