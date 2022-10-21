@@ -76,11 +76,14 @@ class MainPage {
     async playIA() {
         this.disablePlay();
 
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 250));
 
-        this.game.doAIMove();
-        this.turno = !this.turno;
+        const move = this.game.getAIMove();
+        this.bolaAddHighlight(move[0], move[1]-1, 1);
 
+        await new Promise(resolve => setTimeout(resolve, 750));
+
+        this.game.play(move[0], move[1]);
         this.fillGameBoard();
 
         this.enablePlay();
@@ -98,18 +101,18 @@ class MainPage {
     }
 
 
-    bolaMouseOver(col, bola) {
-        const colElem = document.getElementById(`col${col}`);
-        for (let i = bola; i >= 0; i--) {
-            colElem.childNodes[i].classList.add("bola-hover");
+    bolaAddHighlight(col, bolaInicial, player) {
+        let colElem = document.getElementById(`col${col}`);
+        for (let i = bolaInicial; i >= 0; i--) {
+            colElem.childNodes[i].classList.add(`bola-hover-player${player}`);
         }
     }
 
 
-    bolaMouseOut(col, bola) {
-        const colElem = document.getElementById(`col${col}`);
-        for (let i = bola; i >= 0; i--) {
-            colElem.childNodes[i].classList.remove("bola-hover");
+    bolaRemoveHighlight(col, bolaInicial) {
+        let colElem = document.getElementById(`col${col}`);
+        for (let i = bolaInicial; i >= 0; i--) {
+            colElem.childNodes[i].classList.remove("bola-hover-player0");
         }
     }
 
@@ -130,8 +133,8 @@ class MainPage {
                 bolaElem.setAttribute("value", i + 1);
                 bolaElem.setAttribute("coluna", j);
                 bolaElem.onclick = () => this.play(j, i + 1);
-                bolaElem.onmouseover = () => this.bolaMouseOver(j, i);
-                bolaElem.onmouseout = () => this.bolaMouseOut(j, i);
+                bolaElem.onmouseover = () => this.bolaAddHighlight(j, i, 0);
+                bolaElem.onmouseout = () => this.bolaRemoveHighlight(j, i, 0);
 
                 colElem.appendChild(bolaElem);
             }
