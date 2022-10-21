@@ -1,4 +1,3 @@
-
 /* Fonte Lato */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
@@ -14,9 +13,7 @@
     scroll-behavior: smooth;
 }
 
-html {
-
-}
+html {}
 
 body {
     font-weight: 100;
@@ -31,8 +28,8 @@ body {
 }
 
 .sombra {
-    box-shadow:  20px 20px 50px #bebebe,
-             -20px -20px 50px #ffffff;
+    box-shadow: 20px 20px 50px #bebebe,
+        -20px -20px 50px #ffffff;
     padding: 20px;
 }
 
@@ -46,7 +43,7 @@ header a:hover {
     background-color: turquoise;
 }
 
-.logotipo{
+.logotipo {
     width: 70px;
     height: 70px;
     background: #292828;
@@ -59,20 +56,20 @@ header a:hover {
     font-family: 'Teko', sans-serif;
     text-transform: uppercase;
     font-size: 3rem;
-    letter-spacing: -0.1rem;  
+    letter-spacing: -0.1rem;
     font-weight: 400;
     color: white;
     padding-top: 5px;
     z-index: 1000;
-  }
-    
+}
+
 
 .contentor-jogo {
     width: 100vw;
     min-width: 1650px;
     height: 100vh;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
@@ -108,7 +105,7 @@ header ul {
     margin: 10px;
     text-decoration: none;
     color: #292828;
-    width:fit-content;
+    width: fit-content;
     text-align: center;
 }
 
@@ -124,7 +121,7 @@ header ul {
     color: #bebebe;
     font-weight: bold;
     margin: 10px;
-    width:fit-content;
+    width: fit-content;
     text-align: center;
 }
 
@@ -143,7 +140,7 @@ header ul {
     border-radius: 40px;
 
     display: inline-flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
 }
@@ -151,26 +148,29 @@ header ul {
 .coluna-jogo {
     width: 100%;
     height: 100%;
-    border-right:1px solid rgba(195,195,195,1);
+    border-right: 1px solid rgba(195, 195, 195, 1);
     
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .coluna-jogo:last-child {
     border: none;
-    
 }
 
 .bola {
     border: 1px solid #BAB8B8;
     border-radius: 50%;
-    background: rgba(195,195,195,1);
-    background-image: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(191,190,190,1) 70%, rgba(191,190,190,1) 100%); 
+    background: rgba(195, 195, 195, 1);
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(191, 190, 190, 1) 70%, rgba(191, 190, 190, 1) 100%);
     /*
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(191,190,190,1) 65%, rgba(191,190,190,1) 100%); 
     */
     background-position: top -5px left 0px;
     background-size: 120%;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     width: 100px;
     height: 100px;
     margin: 10px;
@@ -178,7 +178,7 @@ header ul {
 }
 
 .bola:hover {
-    box-shadow:  0px 0px 0 8px white, 0px 0px 0 12px turquoise;
+    box-shadow: 0px 0px 0 8px white, 0px 0px 0 12px turquoise;
 }
 
 .contentor-mensagem {
@@ -192,7 +192,7 @@ header ul {
     justify-content: center;
 }
 
-.contentor-mensagem > * {
+.contentor-mensagem>* {
     font-size: 1.2rem;
 }
 
@@ -208,7 +208,7 @@ header ul {
     justify-content: stretch;
 }
 
-.contentor-config > * {
+.contentor-config>* {
     line-height: 2.2rem;
 }
 
@@ -244,7 +244,7 @@ input {
 
 h1 {
     font-family: 'Teko', sans-serif;
-    text-transform:uppercase;
+    text-transform: uppercase;
     font-size: 3rem;
     font-weight: 400;
     text-align: center;
@@ -260,8 +260,12 @@ h1 {
 
 }
 
-.informacoes div > * {
+.informacoes div>* {
     padding: 20px;
     line-height: 2rem;
 
+}
+
+.disable {
+    pointer-events: none;
 }

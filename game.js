@@ -23,7 +23,7 @@ export class Game {
         this.board = [];
         for (let i = 0; i < this.nRows; i++) {
             // 1 sendo o valor mínimo da coluna
-            this.board[i] = Math.floor(Math.random() * (this.nCols - 1)) + 1;
+            this.board[i] = Math.floor(Math.random() * (this.nCols)) + 1;
         }
     }
 
@@ -178,7 +178,7 @@ export class Game {
         }
         else if (this.isBalanced()) {
             // play random move
-            this.doRandomMove(1)
+            this.doRandomMove(1);
         } else {
             // try to find a move that balances
             let unbalancedRow = this.getFirstUnbalancedRow();
@@ -211,4 +211,6 @@ export class Game {
 
 
 }
+
+
 
